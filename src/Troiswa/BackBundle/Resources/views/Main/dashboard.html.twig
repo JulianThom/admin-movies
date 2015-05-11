@@ -1,0 +1,233 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+{% block title %}
+   {{ parent() }} Dashboard
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+<!-- Morris Charts CSS -->
+<link href="{{ asset ("assets/css/plugins/morris.css")}}" rel="stylesheet">
+{% endblock %}
+
+{% block central %}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Dashboard <small>Statistiques globales</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-dashboard"></i> Dashboard
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <!--  <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+                        </div>
+                    </div>
+                </div> -->
+              <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-film fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ nbFilms }}</div>
+                                    <div>films</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path("troiswa_back_listingFilms") }}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Voir tous les films</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ nbActeurs }}</div>
+                                    <div>acteurs</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path("troiswa_back_listingActeurs") }}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Voir tous les acteurs</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-star fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Meilleure note</div><p></p>
+                                    <div>{{ bestFilm.titre }} </div>
+                                    <div class="ratyCommentaire" data-number="{{ bestFilm.note }}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path("troiswa_back_ficheFilm",{"id":bestFilm.id}) }}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Voir la fiche film</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+<!--                     <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div>Support Tickets!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div> -->
+                </div>
+
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-male fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ nbGenre.0[1] }}</div>
+                                    <div>acteurs</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path("troiswa_back_showActeurs") }}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Voir tous les acteurs</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-female fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ nbGenre.1[1] }}</div>
+                                    <div>actrices</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{ path("troiswa_back_showActrices") }}">
+                            <div class="panel-footer">
+                                <span class="pull-left">Voir toutes les actrices</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Derniers films ajoutés</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="list-group">
+                                {%  for value in lastFilm %}
+                                <a href="{{ path("troiswa_back_ficheFilm",{"id":value.id}) }}" class="list-group-item">
+                                    <span class="badge">Voir la fiche</span>
+                                     {{ value.titre }}
+                                </a>
+                                {% endfor %}
+                            </div>
+                            <div class="text-right">
+                                <a href="{{ path("troiswa_back_listingFilms") }}">Voir tous les films <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+<script>var chemin="{{ asset ("assets/js/raty-2.7.0/lib/images")}}";</script>
+
+<script src="{{ asset ("assets/js/jquery.js")}}"></script>
+<script src="{{ asset ("assets/js/raty-2.7.0/lib/jquery.raty.js")}}"></script>   
+<script src="{{ asset ("assets/js/app.js")}}"></script>    
+    <!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+<!-- Morris Charts JavaScript -->
+<script src="{{ asset ("assets/js/plugins/morris/raphael.min.js")}}"></script>
+<script src="{{ asset ("assets/js/plugins/morris/morris.min.js")}}"></script>
+<script src="{{ asset ("assets/js/plugins/morris/morris-data.js")}}"></script>
+{% endblock %}

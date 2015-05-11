@@ -1,0 +1,8 @@
+{% extends "TroiswaBackBundle:Default:index.html.twig" %}
+    {% block contenu %}
+        <p>Ceci est un texte.</p>
+    {% endblock contenu %}
+
+    {% block autre %}
+        {{ parent() }}et la suite
+    {% endblock autre %}

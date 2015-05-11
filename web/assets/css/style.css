@@ -1,0 +1,30 @@
+.table>tbody>tr:nth-child(even){
+    background-color: #eee;
+    border: 0px;
+}
+
+.table-bordered>tbody>tr>td{
+    border: 0px;
+}
+
+.table-bordered>thead>tr>th{
+    border-bottom-width: 1px;
+    background-color: #aaa;
+    color: white;
+}
+
+.table-bordered>thead>tr>th{
+    border: 0px;
+}
+
+.table-bordered{
+    border: 0px;
+}
+
+h1{
+    margin-top: 0px;
+}
+
+#erreur404{
+    background-color: white;
+}

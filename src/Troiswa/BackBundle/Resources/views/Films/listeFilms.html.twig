@@ -1,0 +1,114 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} Listing films
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+        <!-- {# dump (films) #} -->
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Tous les films
+                    <span class="count">
+                        ({{ films.getTotalItemCount }})
+                    </span>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_accueilDashboard") }}">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-fw fa-film"></i> Tous les films
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                {% for message in app.session.flashBag.get("success_film") %}
+                    <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
+                <a href="{{ path("troiswa_back_createFilm") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Ajouter un film</a><br><br>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+<!--                             <th class="col-lg-1">ID</th> -->
+                            <th class="col-lg-1">Affiche</th>
+                            <th class="col-lg-1">
+                            Titre {{ knp_pagination_sortable(films, '▲', 'a.titre', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(films, '▼', 'a.titre', {'direction': 'desc'}) }}
+                            </th>
+                            <th class="col-lg-6">Description</th>
+                            <th class="col-lg-1">Genre</th>
+                            <th class="col-lg-1">
+                            Sortie le {{ knp_pagination_sortable(films, '▲', 'a.dateReal', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(films, '▼', 'a.dateReal', {'direction': 'desc'}) }}
+                            </th>
+                            <th class="col-lg-2">
+                            Note {{ knp_pagination_sortable(films, '▲', 'a.note', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(films, '▼', 'a.note', {'direction': 'desc'}) }}
+                            </th>
+                            <th class="col-lg-1">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%  for value in films %}
+                        <tr>
+<!--                             <td>{{ value.id }}</td> -->
+                            <td><img class="img-responsive" src="{{ asset(value.displayImage) }}" alt=""></td>
+                            <td>{{ value.titre }}</td>
+                            <td>{{ value.description }}</td>
+                            <td>{{ value.liaisonGenre.type }}</td>
+                            <td>{{ value.dateReal|date("d/m/Y") }}</td>
+                            <td>
+                            <span class="ratyCommentaire" data-number="{{ value.note }}"></span></td>
+                            <td><a class="btn btn-xs btn btn-primary" href="{{ path("troiswa_back_ficheFilm",{"id":value.id}) }}"><span class="glyphicon glyphicon-eye-open"></span> Voir</a><br><br>
+                            <a class="btn btn-xs btn-primary btn btn-success" href="{{ path("troiswa_back_modifFilm",{"id":value.id}) }}"><span class="glyphicon glyphicon-open-file"></span> Modifier</a><br><br>
+                                <a class="btn btn-xs btn-primary btn btn-danger" href="{{ path("troiswa_back_suppFilm",{"id":value.id}) }}"><span class="glyphicon glyphicon-trash"></span> Supprimer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(films) }}
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+
+            <!-- /.row -->
+
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<script>var chemin="{{ asset ("assets/js/raty-2.7.0/lib/images")}}";</script>
+
+<script src="{{ asset ("assets/js/jquery.js")}}"></script>
+<script src="{{ asset ("assets/js/raty-2.7.0/lib/jquery.raty.js")}}"></script>   
+<script src="{{ asset ("assets/js/app.js")}}"></script>
+<!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+{% endblock %}

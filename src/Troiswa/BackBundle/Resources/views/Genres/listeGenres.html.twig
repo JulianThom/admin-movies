@@ -1,0 +1,87 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} Listing genres
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+        <!--  -->
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Tous les genres
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_accueilDashboard") }}">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-fw fa-th-list"></i> Tous les genres
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+            {% for message in app.session.flashBag.get("success_genre") %}
+                <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
+                <div class="table-responsive">
+                    <a href="{{ path("troiswa_back_createGenre") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Ajouter un genre</a><br><br>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="col-lg-1">ID</th>
+                            <th class="col-lg-2">Type</th>
+                            <th class="col-lg-3">Description</th>
+                             <th class="col-lg-3">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%  for value in genres %}
+                        <tr>
+                            <td>{{ value.id }}</td>
+                            <td>{{ value.type }}</td>
+                            <td>{{ value.description }}</td>
+                            <td>
+                                <a class="btn btn-xs btn btn-primary" href="#"><span class="glyphicon glyphicon-eye-open"></span> Voir les films</a>
+                                &nbsp
+                                <a class="btn btn-xs btn btn-success" href="{{ path("troiswa_back_modifGenre",{"id":value.id}) }}"><span class="glyphicon glyphicon-open-file"></span> Modifier</a>
+                                &nbsp
+                                <a class="btn btn-xs btn btn-danger" href="{{ path("troiswa_back_suppGenre",{"id":value.id}) }}"><span class="glyphicon glyphicon-trash"></span> Supprimer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+
+            <!-- /.row -->
+
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+{% endblock %}

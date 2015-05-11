@@ -1,0 +1,104 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} Listing acteurs
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Toutes les actrices
+                    <span class="count">
+                        ({{ femmes.getTotalItemCount }})
+                    </span>
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_accueilDashboard") }}">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <i class="fa fa-user"></i> Toutes les actrices
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                {% for message in app.session.flashBag.get("success_acteur") %}
+                    <p class="alert alert-success">{{ message }}</p>
+                {% endfor %}
+                <a href="{{ path("troiswa_back_createActeur") }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Ajouter un acteur</a><br><br>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <!-- <th>ID {{ knp_pagination_sortable(femmes, '▲', 'a.id', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(femmes, '▼', 'a.id', {'direction': 'desc'}) }}</th> -->
+                            <th>Photos</th>
+                            <th>
+                                Prénom {{ knp_pagination_sortable(femmes, '▲', 'a.prenom', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(femmes, '▼', 'a.prenom', {'direction': 'desc'}) }}</th>
+                            <th>Nom {{ knp_pagination_sortable(femmes, '▲', 'a.nom', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(femmes, '▼', 'a.nom', {'direction': 'desc'}) }}</th>
+                            <th> Sexe {{ knp_pagination_sortable(femmes, '▲', 'a.sexe', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(femmes, '▼', 'a.sexe', {'direction': 'desc'}) }}</th>
+                            <th> Date de naissance {{ knp_pagination_sortable(femmes, '▲', 'a.dateNaissance', {'direction': 'asc'}) }}
+                                {{ knp_pagination_sortable(femmes, '▼', 'a.dateNaissance', {'direction': 'desc'}) }}</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {%  for value in femmes %}
+                        <tr>
+<!--                             <td class="col-lg-1">{{ value.id }}</td> -->
+                            <td class="col-lg-2"><img class="img-responsive" src="{{ asset(value.displayImage) }}" alt=""></td>
+                            <td class="col-lg-2">{{ value.prenom |capitalize }}</td>
+                            <td class="col-lg-2">{{ value.nom |capitalize }}</td>
+                            <td class="col-lg-1">{% if value.sexe==0 %}Homme
+                                {% else %}Femme
+                                {% endif %}</td>
+                            <td class="col-lg-2">{{ value.dateNaissance |date("d/m/Y") }}</td>
+                            <td class="col-lg-3"><a class="btn btn-xs btn btn-primary" href="{{ path("troiswa_back_ficheActeur",{"id":value.id}) }}"><span class="glyphicon glyphicon-eye-open"></span> Voir</a>
+                            <a class="btn btn-xs btn-primary btn btn-success" href="{{ path("troiswa_back_modifActeur",{"id":value.id}) }}"><span class="glyphicon glyphicon-open-file"></span> Modifier</a>
+                                <a class="btn btn-xs btn-primary btn btn-danger" href="{{ path("troiswa_back_suppActeur",{"id":value.id}) }}"><span class="glyphicon glyphicon-trash"></span> Supprimer</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {# display navigation #}
+                    <div class="navigation">
+                        {{ knp_pagination_render(femmes) }}
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+
+            <!-- /.row -->
+
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+{% endblock %}

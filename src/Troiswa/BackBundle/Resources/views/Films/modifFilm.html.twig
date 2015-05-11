@@ -1,0 +1,115 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} Modifier un film
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Modifier un film
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_accueilDashboard") }}">Dashboard</a>
+                    </li>
+                    <li >
+                        <i class="fa fa-fw fa-film"></i> <a href="{{ path("troiswa_back_listingFilms") }}"> Tous les films</a>
+                    </li>
+                     <li >
+                        <span class="glyphicon glyphicon-open-file"></span>  Modifier un film
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(formFilm, {"attr":{"novalidate":"novalidate"}}) }}
+                {{ form_errors(formFilm) }}
+                <div class="form-group">
+                {{ form_label(formFilm.titre, "Titre") }}
+                {{ form_widget(formFilm.titre, {"attr":{"class":"form-control", "placeholder":"Entrer un titre"}, "id":"titre"}) }}
+                </div>
+                <div>
+                {% if form_errors(formFilm.titre) is not empty %}
+                    <br><div class="alert alert-danger">
+                    {{ form_errors(formFilm.titre) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_label(formFilm.description, "Description") }}
+                {{ form_widget(formFilm.description, {"attr":{"class":"form-control", "placeholder":"Entrer une description"}, "id":"description"}) }}
+                </div>
+                {% if form_errors(formFilm.description) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formFilm.description) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    {{ form_label(formFilm.liaisonGenre, "Genre") }}
+                    {{ form_widget(formFilm.liaisonGenre, {"attr":{"class":"form-control", "placeholder":"Entrer une description"}, "id":"description"}) }}
+                    </div>
+                    {% if form_errors(formFilm.liaisonGenre) is not empty %}
+                    <br><div class="alert alert-danger">
+                    {{ form_errors(formFilm.liaisonGenre) }}
+                </div>
+                {% endif %}
+                {{ form_widget(formFilm.dateAjout, {"attr":{"style":"display:none;"}}) }}
+                <div class="form-group">
+                    {{ form_label(formFilm.dateReal, "Date de réalisation") }}
+                    {{ form_widget(formFilm.dateReal, {"id":"dateReal"}) }}
+                </div>
+                {% if form_errors(formFilm.dateReal) is not empty %}
+                <br><div class="alert alert-danger">
+                    {{ form_errors(formFilm.dateReal) }}
+                </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_label(formFilm.note, "Note") }}
+                {{ form_widget(formFilm.note, {"attr":{"class":"form-control", "placeholder":"Entrer une note"}, "id":"note"}) }}
+                </div>
+                {% if form_errors(formFilm.note) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formFilm.note) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_label(formFilm.fichier, "Image") }}
+                {{ form_widget(formFilm.fichier, {"attr":{"class":"form-control", "placeholder":"Ajouter une image"}, "id":"image"}) }}
+                </div>
+                {% if form_errors(formFilm.fichier) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formFilm.fichier) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_widget(formFilm.modifier, {"attr":{"class":"btn btn-primary"}, "id":"ajouter"}) }}
+                </div>
+                {{ form_end(formFilm) }}
+            </div>
+        </div>
+
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+{% endblock %}

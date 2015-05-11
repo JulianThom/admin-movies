@@ -1,0 +1,63 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} Fiche film
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    La fiche du film {{ unFilm.titre }}
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_accueilDashboard") }}">Dashboard</a>
+                    </li>
+                    <li >
+                        <i class="fa fa-fw fa-film"></i> <a href="{{ path("troiswa_back_listingFilms") }}"> Tous les films</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-list-alt"></i> La fiche de {{ unFilm.titre }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-4">
+                    <img class="img-responsive" src="{{ asset(unFilm.displayImage) }}" alt="">
+            </div>
+            <div class="col-md-8">
+                <h1>{{ unFilm.titre }}</h1>
+                <div class="ratyCommentaire" data-number="{{ unFilm.note }}"></div>
+                <h4>Sortie le {{ unFilm.dateReal |date("d/m/Y") }}</h4>
+                <p>Genre :  {{ unFilm.liaisonGenre.type }}</p>
+                <p>{{ unFilm.description }}</p>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<script>var chemin="{{ asset ("assets/js/raty-2.7.0/lib/images")}}";</script>
+
+<script src="{{ asset ("assets/js/jquery.js")}}"></script>
+<script src="{{ asset ("assets/js/raty-2.7.0/lib/jquery.raty.js")}}"></script>   
+<script src="{{ asset ("assets/js/app.js")}}"></script>
+<!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,104 @@
+troiswa_back_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TroiswaBackBundle:Default:index }
+
+
+troiswa_back_test: #Nom unique de la route
+    path:     /essai #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Default:try } #Chemin vers le controller et sa méthode
+
+#--------------------------------------------#
+#--------------DASHBOARD---------------------#
+#--------------------------------------------#
+troiswa_back_accueilDashboard: #Nom unique de la route
+    path:     /admin #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Main:admin } #Chemin vers le controller et sa méthode
+
+#--------------------------------------------#
+#---------------ACTEURS----------------------#
+#--------------------------------------------#
+troiswa_back_listingActeurs: #Nom unique de la route
+    path:     /admin/acteurs #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Acteurs:listingActeurs } #Chemin vers le controller et sa méthode
+
+troiswa_back_ficheActeur: #Nom unique de la route
+    path:     /admin/acteurs/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Acteurs:getFicheActeurByID } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+
+
+troiswa_back_createActeur: #Nom unique de la route
+    path:     /admin/createActeur #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Acteurs:createActeur } #Chemin vers le controller et sa méthode
+
+troiswa_back_modifActeur: #Nom unique de la route
+    path:     /admin/modificationActeur/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Acteurs:modifActeur } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+
+
+troiswa_back_suppActeur: #Nom unique de la route
+    path:     /admin/supprimerActeur/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Acteurs:suppActeur } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+
+
+troiswa_back_showActeurs: #Nom unique de la route
+    path:     /admin/showActeurs #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Acteurs:listingHommes } #Chemin vers le controller et sa méthode
+
+troiswa_back_showActrices: #Nom unique de la route
+    path:     /admin/showActrices #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Acteurs:listingFemmes } #Chemin vers le controller et sa méthode
+
+#--------------------------------------------#
+#-----------------FILMS----------------------#
+#--------------------------------------------#
+troiswa_back_listingFilms: #Nom unique de la route
+    path:     /admin/films #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Films:listingFilms } #Chemin vers le controller et sa méthode
+
+troiswa_back_ficheFilm: #Nom unique de la route
+    path:     /admin/films/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Films:getFicheFilmByID } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+
+
+troiswa_back_createFilm: #Nom unique de la route
+    path:     /admin/creationFilm #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Films:createFilm } #Chemin vers le controller et sa méthode
+
+troiswa_back_modifFilm: #Nom unique de la route
+    path:     /admin/modificationFilm/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Films:modifFilm } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+
+
+troiswa_back_suppFilm: #Nom unique de la route
+    path:     /admin/supprimerFilm/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Films:suppFilm } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+
+
+#--------------------------------------------#
+#-----------------GENRES---------------------#
+#--------------------------------------------#
+troiswa_back_listingGenres: #Nom unique de la route
+    path:     /admin/genre #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Genres:listingGenres } #Chemin vers le controller et sa méthode
+
+troiswa_back_createGenre: #Nom unique de la route
+    path:     /admin/creationGenre #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Genres:createGenre } #Chemin vers le controller et sa méthode
+
+troiswa_back_modifGenre: #Nom unique de la route
+    path:     /admin/modificationGenre/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Genres:modifGenre } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+
+
+troiswa_back_suppGenre: #Nom unique de la route
+    path:     /admin/supprimerGenre/{id} #URL de la page
+    defaults: { _controller: TroiswaBackBundle:Genres:suppGenre } #Chemin vers le controller et sa méthode
+    requirements:
+              id: \d+

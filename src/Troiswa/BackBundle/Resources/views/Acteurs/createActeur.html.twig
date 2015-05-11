@@ -1,0 +1,134 @@
+{% extends "TroiswaBackBundle::layout.html.twig" %}
+{% block title %}
+    {{ parent() }} Ajouter un acteur
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block central %}
+
+<div id="page-wrapper">
+
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Ajouter un acteur
+                </h1>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>  <a href="{{ path("troiswa_back_accueilDashboard") }}">Dashboard</a>
+                    </li>
+                    <li >
+                        <i class="fa fa-fw fa-user"></i> <a href="{{ path("troiswa_back_listingActeurs") }}"> Tous les acteurs</a>
+                    </li>
+                     <li >
+                        <span class="glyphicon glyphicon-plus"></span>  Ajouter un acteur
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_start(formActeur, {"attr":{"novalidate":"novalidate"}}) }}
+                {{ form_errors(formActeur) }}
+                <div class="form-group">
+                {{ form_label(formActeur.prenom, "Prénom") }}
+                {{ form_widget(formActeur.prenom, {"attr":{"class":"form-control", "placeholder":"Entrer le prénom"}, "id":"prenom"}) }}
+                </div>
+                <div>
+                {% if form_errors(formActeur.prenom) is not empty %}
+                    <br><div class="alert alert-danger">
+                    {{ form_errors(formActeur.prenom) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_label(formActeur.nom, "Nom") }}
+                {{ form_widget(formActeur.nom, {"attr":{"class":"form-control", "placeholder":"Entrer le nom"}, "id":"nom"}) }}
+                </div>
+                {% if form_errors(formActeur.nom) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formActeur.nom) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_widget(formActeur.sexe.0) }}
+                {{ form_label(formActeur.sexe.0) }}
+                {{ form_widget(formActeur.sexe.1) }}
+                {{ form_label(formActeur.sexe.1) }}
+                </div>
+                {% if form_errors(formActeur.sexe) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formActeur.sexe) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    {{ form_label(formActeur.liaisonFilms, "Films tournés") }}
+                    {{ form_widget(formActeur.liaisonFilms, {"attr":{"class":"form-control", "placeholder":"Entrer une description"}, "id":"description"}) }}
+                    </div>
+                    {% if form_errors(formActeur.liaisonFilms) is not empty %}
+                    <br><div class="alert alert-danger">
+                    {{ form_errors(formActeur.liaisonFilms) }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                {{ form_label(formActeur.bio, "Biographie") }}
+                {{ form_widget(formActeur.bio, {"attr":{"class":"form-control", "placeholder":"Entrer une biographie"}, "id":"bio"}) }}
+                </div>
+                {% if form_errors(formActeur.bio) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formActeur.bio) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_label(formActeur.dateNaissance, "Date de naissance") }}
+                {{ form_widget(formActeur.dateNaissance, {"id":"dateNaissance"}) }}
+                </div>
+                {% if form_errors(formActeur.dateNaissance) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formActeur.dateNaissance) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_label(formActeur.ville, "Ville") }}
+                {{ form_widget(formActeur.ville, {"attr":{"class":"form-control", "placeholder":"Entrer la ville de naissance"}, "id":"ville"}) }}
+                </div>
+                {% if form_errors(formActeur.ville) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formActeur.ville) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_label(formActeur.fichier, "Image") }}
+                {{ form_widget(formActeur.fichier, {"attr":{"class":"form-control", "placeholder":"Ajouter une image"}, "id":"image"}) }}
+                </div>
+                {% if form_errors(formActeur.fichier) is not empty %}
+                    <br><div class="alert alert-danger">
+                        {{ form_errors(formActeur.fichier) }}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                {{ form_widget(formActeur.ajouter, {"attr":{"class":"btn btn-primary"}, "id":"ajouter"}) }}
+                </div>
+                {{ form_end(formActeur) }}
+            </div>
+        </div>
+
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+{% endblock %}

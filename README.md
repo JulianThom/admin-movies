@@ -1,4 +1,4 @@
-symfony
+Symfony
 =======
 
 Personnal projet of admin interface with a movies database.
